@@ -5,7 +5,7 @@ import AddPost from "./AddPost";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { PostsType } from "./types/Posts";
-
+import supportsColor from "supports-color";
 //Fetch All posts
 const allPosts = async () => {
 	const response = await axios.get("/api/posts/getPosts");
@@ -35,4 +35,15 @@ export default function Home() {
 			))}
 		</div>
 	);
+}
+
+export async function getStaticProps() {
+	const res = await fetch("https://myapi.com/page");
+	const data = await res.json();
+
+	return {
+		props: {
+			data,
+		},
+	};
 }
